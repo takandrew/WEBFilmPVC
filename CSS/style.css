@@ -1,5 +1,6 @@
 .сourse-theme {
     text-align: center;
+    color: black;
 }
 
 .course-theme:after {
@@ -22,6 +23,10 @@
 .button-upload:active {
     background-color: #e337ec;
     border: 3px solid #3e2348;
+}
+
+.div-button {
+    text-align: center;
 }
 
 body {
