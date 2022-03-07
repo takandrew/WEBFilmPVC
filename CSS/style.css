@@ -10,22 +10,13 @@
     height: 2px;
     background-color: black;
 }
-/*
-.button-upload {
-    background-color: #c36cda;
-    color: aliceblue;
+
+.div-button {
     text-align: center;
-    border-radius: 8px;
-    border: 2px solid #3e2348;
-    font-size: 16px;
 }
 
-.button-upload:active {
-    background-color: #e337ec;
-    border: 3px solid #3e2348;
-}
-*/
-.div-button {
+.div-image {
+    margin-top: 20px;
     text-align: center;
 }
 

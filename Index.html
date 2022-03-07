@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>Главная страница</title>
 </head>
 <body>
     <h1 class="сourse-theme">Дистанционная система оценки динамической термостабильности ПВХ-пленок</h1>
     <div class="div-button">
         <p class="text-upload">Загрузить фотографию:</p>
-        <input type="file" name="photo-pvc">
+        <input type="file" id="photo_pvc">
+        <button name="upload-button" onclick="save()">Загрузить</button>
+    </div>
+    <div class="div-image">
+        <img id="image_pvc" width="500px" height="500px" alt=""/>
     </div>
 </body>
+<script src="JS/Scripts.js"></script>
 </html>
