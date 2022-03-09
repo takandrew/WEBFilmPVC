@@ -19,10 +19,12 @@
     display: none;
 }
 
-/*TODO: Настроить активность*/
-.div_image:active {
-    display: block;
+.do-margin {
     margin-top: 20px;
+}
+
+.div_image.visited {
+    display: block;
     text-align: center;
 }
 
@@ -32,4 +34,13 @@
 
 body {
     background-color: #e6e7ff;
+}
+
+/*TODO: Настроить расположение футера*/
+.content {
+    height: 94vh;
+}
+
+.footer-about {
+    height: min-content;
 }

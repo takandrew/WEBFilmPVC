@@ -5,8 +5,7 @@ function Show_uploaded_image () {
         localStorage.setItem('myImage', image_pvc.src);
     }
 }
-//image_pvc.src = localStorage.setItem('myImage');
 
 const Show_div_image = () => {
-    div_image.classList.toggle("active");
+    div_image.classList.toggle("visited");
 }

@@ -7,15 +7,19 @@
     <title>Главная страница</title>
 </head>
 <body>
-    <h1 class="сourse-theme">Дистанционная система оценки динамической термостабильности ПВХ-пленок</h1>
-    <div class="div-button">
-        <p class="text-upload">Загрузить фотографию:</p>
-        <input type="file" id="photo_pvc">
-        <button name="upload-button" onclick="Show_div_image(), Show_uploaded_image() ">Загрузить</button>
+    <div class="content">
+        <h1 class="сourse-theme">Дистанционная система оценки динамической термостабильности ПВХ-пленок</h1>
+        <div class="div-button">
+            <p class="text-upload">Загрузить фотографию:</p>
+            <input type="file" id="photo_pvc">
+            <button name="upload-button" onclick="Show_div_image(), Show_uploaded_image() ">Загрузить</button>
+        </div>
+        <div class="div_image" id="div_image">
+            <button class="do-margin" name="choose-sector-button">Выделить области</button>
+            <img class="do-margin" id="image_pvc" width="100%" alt=""/>
+        </div>
     </div>
-    <div class="div_image" id="div_image">
-        <img id="image_pvc" width="500px" height="500px" alt=""/>
-    </div>
+    <footer class="footer-about">Кувылькин А.В., СПбГТИ (ТУ) 2022 год.</footer>
 </body>
 <script src="JS/Scripts.js"></script>
 </html>
