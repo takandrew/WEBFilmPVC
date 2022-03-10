@@ -1,4 +1,4 @@
-.сourse-theme {
+.project-theme {
     text-align: center;
     color: black;
 }
@@ -23,13 +23,17 @@
     margin-top: 20px;
 }
 
-.div-image.visited {
+.div-image.active {
     display: block;
     text-align: center;
 }
 
 .text-upload {
     font-size: 20px;
+}
+
+#canvas-pvc {
+    width: border-box;
 }
 
 body {
