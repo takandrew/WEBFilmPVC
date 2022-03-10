@@ -17,11 +17,12 @@ function make_base()
     let canvas = document.getElementById('canvas-pvc'),
         context = canvas.getContext('2d');
     let image = document.getElementById('image-pvc');
-    let needed_width = image.width, needed_height = image.height, needed_proportion = needed_width/needed_height;
-    while (needed_width >= window.innerWidth) {
-        needed_width -= 100;
+    let needed_width = image.width, needed_height = image.height;
+    if (image.width >= window.innerWidth) {
+        let needed_proportion = needed_width/needed_height;
+        needed_width = window.innerWidth - 100;
+        needed_height = needed_width/needed_proportion;
     }
-    needed_height = needed_width/needed_proportion;
     context.canvas.width = needed_width;
     context.canvas.height = needed_height;
     image.onload = function(){
