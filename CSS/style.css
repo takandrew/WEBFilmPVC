@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.div_image {
+.div-image {
     display: none;
 }
 
@@ -23,7 +23,7 @@
     margin-top: 20px;
 }
 
-.div_image.visited {
+.div-image.visited {
     display: block;
     text-align: center;
 }
@@ -34,13 +34,23 @@
 
 body {
     background-color: #e6e7ff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-/*TODO: Настроить расположение футера*/
+.wrapper {
+    background-color: rgb(210, 211, 232);
+}
+
 .content {
-    height: 94vh;
+    flex: 1 0 auto;
 }
 
 .footer-about {
-    height: min-content;
+    flex: 0 0 auto;
+    padding: 5px;
+    background-color: rgb(210, 211, 232);
 }
