@@ -3,24 +3,12 @@
     color: black;
 }
 
-.course-theme:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: black;
-}
-
 .div-button {
     text-align: center;
 }
 
 .div-image {
     display: none;
-}
-
-.do-margin {
-    margin-top: 20px;
 }
 
 .div-image.active {

@@ -13,15 +13,16 @@
     <div class="content">
         <div class="div-button">
             <p class="text-upload">Загрузить фотографию:</p>
-            <input type="file" id="photo-pvc">
+            <input type="file" id="photo-pvc" accept="image/*">
             <button name="upload-button" onclick="make_base()">Загрузить</button>
         </div>
         <div class="div-image" id="div-image">
             <p>
-                <button class="do-margin" name="choose-sector-button" onclick="draw_rectangle()">Выделить области</button>
+               <button id="choose-sector-button" onclick="Start_drawing()">Выделить области</button>
+                <button id="stop-choosing-sector-button" onclick="Stop_drawing()">Закончить выделение</button>
             </p>
             <canvas id="canvas-pvc"></canvas>
-            <img class="do-margin" id="image-pvc" style="display: none" alt=""/>
+            <img id="image-pvc" style="display: none; margin-top: 20px;" src="" alt=""/>
         </div>
     </div>
     <footer class="footer-about">Кувылькин А.В., СПбГТИ (ТУ) 2022 год.</footer>
