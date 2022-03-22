@@ -20,7 +20,8 @@
     font-size: 20px;
 }
 
-#canvas-pvc {
+#canvas-pvc, #canvas-rect {
+    position:absolute; right: 30%;
     width: border-box;
 }
 

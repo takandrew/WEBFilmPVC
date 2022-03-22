@@ -18,10 +18,13 @@
         </div>
         <div class="div-image" id="div-image">
             <p>
-               <button id="choose-sector-button" onclick="Start_drawing()">Выделить области</button>
-                <button id="stop-choosing-sector-button" onclick="Stop_drawing()">Закончить выделение</button>
+               <button id="choose-sector-button" onclick="start_drawing()">Выделить области</button>
+                <button id="stop-choosing-sector-button" onclick="stop_drawing()">Закончить выделение</button>
             </p>
-            <canvas id="canvas-pvc"></canvas>
+            <div class="div-canvas">
+                <canvas id="canvas-pvc"></canvas>
+                <canvas id="canvas-rect"></canvas>
+            </div>
             <img id="image-pvc" style="display: none; margin-top: 20px;" src="" alt=""/>
         </div>
     </div>
