@@ -1,15 +1,23 @@
+let photo_loaded = false;
+
 function Show_uploaded_image () {
     let file = document.getElementById('photo-pvc').files[0];
     if (file) {
         let img_source = document.getElementById('image-pvc');
         img_source.src = URL.createObjectURL(file);
         localStorage.setItem('myImage', img_source);
+        photo_loaded = true;
+    }
+    else {
+        photo_loaded = false;
     }
 }
 
 const Show_div_image = () => {
     let image = document.getElementById('div-image');
-    image.classList.toggle("active", true);
+    if (photo_loaded) {
+        image.classList.toggle("active", true);
+    }
 }
 
 function make_base() {
@@ -29,6 +37,7 @@ function make_base() {
         context_rect.canvas.height = needed_height;
     }
     Show_div_image();
+    rect_arr = [];
 }
 
 var canvas_pvc = document.getElementById('canvas-pvc'),
@@ -91,7 +100,7 @@ var rect_arr = [];
 
 function draw_rectangle(e) {
     if (!is_final_rec) {
-        context_rect.clearRect(x_left, y_left, Math.abs(x_right-x_left), Math.abs(y_left-y_right));
+        context_rect.clearRect(0, 0, canvas_rect.width, canvas_rect.height);
     }
     let rect = e.target.getBoundingClientRect();
     x_right = e.clientX - rect.left;
