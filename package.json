@@ -1,0 +1,31 @@
+{
+  "name": "webfilmpvc",
+  "version": "1.0.0",
+  "description": "It's an app that analyses pvc photos and detects their condition ",
+  "main": "/NodeJS.js",
+  "scripts": {
+    "start": "node NodeJS.js",
+    "dev": "nodemon NodeJS.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takandrew/WEBFilmPVC.git"
+  },
+  "keywords": [
+    "js",
+    "pvc",
+    "polymer"
+  ],
+  "author": "Takandrew <andreikaril@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/takandrew/WEBFilmPVC/issues"
+  },
+  "homepage": "https://github.com/takandrew/WEBFilmPVC#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

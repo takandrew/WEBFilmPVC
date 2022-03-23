@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="public/CSS/style.css">
     <title>Главная страница</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
                <button id="choose-sector-button" onclick="start_drawing()">Выделить области</button>
                 <button id="stop-choosing-sector-button" onclick="stop_drawing()">Закончить выделение</button>
             </p>
-            <div class="div-canvas">
+            <div id="div-canvas">
                 <canvas id="canvas-pvc"></canvas>
                 <canvas id="canvas-rect"></canvas>
             </div>
@@ -30,5 +30,5 @@
     </div>
     <footer class="footer-about">Кувылькин А.В., СПбГТИ (ТУ) 2022 год.</footer>
 </body>
-<script src="JS/Scripts.js"></script>
+<script type="text/javascript" src="public/JS/Scripts.js"></script>
 </html>

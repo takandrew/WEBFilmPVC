@@ -30,6 +30,7 @@ function make_base() {
             needed_width = window.innerWidth - 100;
             needed_height = needed_width/needed_proportion;
         }
+        let div_canvas = document.getElementById('div-canvas');
         context_pvc.canvas.width = needed_width;
         context_pvc.canvas.height = needed_height;
         context_pvc.drawImage(image, 0, 0, needed_width, needed_height)
