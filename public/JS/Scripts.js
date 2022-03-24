@@ -101,10 +101,9 @@ class rect_class {
 }
 
 function modal_save() {
-    temp = document.getElementById('modal-temp').value;
-    time = document.getElementById('modal-time').value;
+    temp = document.getElementById('modal-temp').value.replace(/[a-zA-Z]|\s/g,'');
+    time = document.getElementById('modal-time').value.replace(/[a-zA-Z]|\s/g,'');
     if (temp === "" || time === "") {
-
     }
     else {
         close_modal.click();
