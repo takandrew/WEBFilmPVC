@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="public/CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="public/CSS/modal.css">
     <title>Главная страница</title>
 </head>
 <body>
@@ -11,6 +12,21 @@
         <h1 class="project-theme">Дистанционная система оценки динамической термостабильности ПВХ-пленок</h1>
     </div>
     <div class="content">
+
+        <a id="open_modal" class="open_modal" href="#open" style="visibility: hidden"></a>
+        <div id="modal" class="modal bounceIn">
+            <div id="close_modal">
+                +
+            </div>
+            <div class="modal_txt">
+                <label for="modal-temp">Температура: </label>
+                <input id="modal-temp" type="text">
+                <label for="modal-time">Время (с):</label>
+                <input id="modal-time" type="text">
+                <button id="modal-button" onclick="modal_save()">Сохранить</button>
+            </div>
+        </div>
+
         <div class="div-button">
             <p class="text-upload">Загрузить фотографию:</p>
             <input type="file" id="photo-pvc" accept="image/*">
@@ -31,4 +47,5 @@
     <footer class="footer-about">Кувылькин А.В., СПбГТИ (ТУ) 2022 год.</footer>
 </body>
 <script type="text/javascript" src="public/JS/Scripts.js"></script>
+<script type="text/javascript" src="public/JS/modal.js"></script>
 </html>

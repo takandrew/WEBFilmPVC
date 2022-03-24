@@ -83,16 +83,32 @@ function  mouse_moved(e) {
 
 function mouse_upped(e) {
     is_final_rec = true;
-    draw_rectangle(e);
     draw = false;
+    draw_rectangle(e);
 }
+var temp;
+var time;
 
 class rect_class {
-    constructor(xl, yl, xr, yr) {
+    constructor(time, temp, xl, yl, xr, yr) {
+        this.time = time;
+        this.temp = temp;
         this.xl = xl;
         this.yl = yl;
         this.xr = xr;
         this.yr = yr;
+    }
+}
+
+function modal_save() {
+    temp = document.getElementById('modal-temp').value;
+    time = document.getElementById('modal-time').value;
+    if (temp === "" || time === "") {
+
+    }
+    else {
+        close_modal.click();
+        rect_class_push();
     }
 }
 
@@ -113,8 +129,13 @@ function draw_rectangle(e) {
     else {
         context_rect.strokeRect(x_left,y_left,rect_w,rect_h);
         context_pvc.strokeRect(x_left,y_left,rect_w,rect_h);
-        let rect_class_temp = new rect_class(x_left,y_left,x_right,y_right);
-        rect_arr.push(rect_class_temp);
+        let modal_call = document.getElementById('open_modal');
+        modal_call.click();
     }
+}
+
+function rect_class_push() {
+    let rect_class_temp = new rect_class(time, temp, x_left,y_left,x_right,y_right);
+    rect_arr.push(rect_class_temp);
 }
 
