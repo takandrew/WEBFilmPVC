@@ -2,10 +2,10 @@
   "name": "webfilmpvc",
   "version": "1.0.0",
   "description": "It's an app that analyses pvc photos and detects their condition ",
-  "main": "/NodeJS.js",
+  "main": "/server.js",
   "scripts": {
-    "start": "node NodeJS.js",
-    "dev": "nodemon NodeJS.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "mongodb": "^4.5.0"
   }
 }
