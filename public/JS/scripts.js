@@ -62,6 +62,7 @@ function  stop_drawing() {
     canvas_rect.removeEventListener("mousedown", mouse_downed, true);
     canvas_rect.removeEventListener("mousemove", mouse_moved, true);
     canvas_rect.style.visibility = "hidden";
+    send_data();
 }
 
 var is_final_rec = false;
@@ -138,7 +139,8 @@ function draw_rectangle(e) {
 
 function rect_class_push() {
     get_rect_rgb();
-    let rect_class_temp = new rect_class(time, temp, x_left,y_left,rect_w,rect_h, LAB_L, LAB_a, LAB_b, YI);
+    let rect_class_temp = new rect_class(time, temp, x_left,y_left,
+        rect_w,rect_h, LAB_L, LAB_a, LAB_b, YI);
     rect_arr.push(rect_class_temp);
 }
 
@@ -183,13 +185,6 @@ function get_rect_rgb() {
     LAB_L = (116*fy)-16;
     LAB_a = 500*(fx-fy);
     LAB_b = 200*(fy-fz);
-
-    // console.log(`RGB: R = ${R}; G = ${G}; B = ${B}`);
-    // console.log(`nRGB: nR = ${nR}; nG = ${nG}; nB = ${nB}`);
-    // console.log(`rgb: r = ${r}; g = ${g}; b = ${b}`);
-    // console.log(`XYZ: X = ${X}; Y = ${Y}; Z = ${Z}`);
-    // console.log(`YI = ${YI}`);
-    // console.log(`LAB: L = ${LAB_L}; a = ${LAB_a}; b = ${LAB_b}`);
 }
 
 let get_rgb = function(x) {
@@ -208,4 +203,13 @@ let get_f = function(x) {
     else {
         return (903.3*x+16.0)/116.0;
     }
+}
+
+//FIXME: Отправить данные на сервер
+function send_data() {
+    axios.post('/sendData', {rect_arr: rect_arr}).then(function(response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.log(error);
+    });
 }
