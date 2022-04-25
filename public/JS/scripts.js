@@ -35,6 +35,7 @@ function make_base() {
         context_pvc.drawImage(image, 0, 0, needed_width, needed_height)
         context_rect.canvas.width = needed_width;
         context_rect.canvas.height = needed_height;
+        document.getElementById('div-canvas').style = `position: relative; height: ${needed_height}px;`;
     }
     Show_div_image();
     rect_arr = [];
@@ -63,6 +64,8 @@ function  stop_drawing() {
     canvas_rect.removeEventListener("mousemove", mouse_moved, true);
     canvas_rect.style.visibility = "hidden";
     send_data();
+    create_table();
+    get_data();
 }
 
 var is_final_rec = false;
@@ -145,7 +148,7 @@ function rect_class_push() {
 }
 
 function get_rect_rgb() {
-    let rgb_data = context_pvc.getImageData(x_left,y_left, rect_w, rect_h).data;
+    let rgb_data = context_pvc.getImageData(x_left, y_left, rect_w, rect_h).data;
     let R = 0, G = 0, B = 0;
     for (let i = 0; i < rgb_data.length; i += 4) {
         const Ri = rgb_data[i];
@@ -155,12 +158,12 @@ function get_rect_rgb() {
         G += Gi;
         B += Bi;
     }
-    let S = (rect_w*rect_h);
+    let S = (rect_w * rect_h);
     R = R / S;
     G = G / S;
     B = B / S;
 
-    let nR = R/255, nG = G/255, nB = B/255;
+    let nR = R / 255, nG = G / 255, nB = B / 255;
 
     let r, g, b;
     r = get_rgb(nR);
@@ -168,23 +171,23 @@ function get_rect_rgb() {
     b = get_rgb(nB);
 
     let X, Y, Z;
-    X = 0.412453*r+0.357580*g+0.180423*b;
-    Y = 0.212671*r+0.715160*g+0.072169*b;
-    Z = 0.019334*r+0.119193*g+0.950227*b;
+    X = 0.412453 * r + 0.357580 * g + 0.180423 * b;
+    Y = 0.212671 * r + 0.715160 * g + 0.072169 * b;
+    Z = 0.019334 * r + 0.119193 * g + 0.950227 * b;
 
-    YI = 100*(1.28*X-1.06*Z)/Y;
+    YI = Number((100 * (1.28 * X - 1.06 * Z) / Y).toFixed(2)) ;
 
     let Xr = 0.964221, Yr = 1, Zr = 0.825211;
-    let xr = X/Xr, yr = Y/Yr, zr = Z/Zr;
+    let xr = X / Xr, yr = Y / Yr, zr = Z / Zr;
 
     let fx, fy, fz;
     fx = get_f(xr);
     fy = get_f(yr);
     fz = get_f(zr);
 
-    LAB_L = (116*fy)-16;
-    LAB_a = 500*(fx-fy);
-    LAB_b = 200*(fy-fz);
+    LAB_L = Number(((116 * fy) - 16).toFixed(2));
+    LAB_a = Number((500 * (fx - fy)).toFixed(2));
+    LAB_b = Number((200 * (fy - fz)).toFixed(2));
 }
 
 let get_rgb = function(x) {
@@ -205,9 +208,17 @@ let get_f = function(x) {
     }
 }
 
-//FIXME: Отправить данные на сервер
+
 function send_data() {
     axios.post('/sendData', {rect_arr: rect_arr}).then(function(response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function get_data() {
+    axios.post('/getData', {rect_arr: rect_arr}).then(function(response) {
         console.log(response.data);
     }).catch(function (error) {
         console.log(error);

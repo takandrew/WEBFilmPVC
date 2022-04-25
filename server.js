@@ -12,14 +12,19 @@ app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-let got_rect_arr = [];
+var got_rect_arr = [];
 
-//FIXME: Принять данные с сервера
+
 app.post('/sendData', (req, res) => {
     got_rect_arr = req.body.rect_arr;
     mongo_push();
 });
 
+app.post('/getData', (req, res) => {
+    // Что-то
+    console.log("Пришел запрос getData");
+    mongo_get();
+});
 
 const port_id = process.env.PORT || 8080;
 app.listen(port_id, () => {
@@ -49,5 +54,22 @@ function mongo_push() {
             console.log(`New insert into db: temp: ${got_rect_arr[i].temp}, time: ${got_rect_arr[i].time}, L: ${got_rect_arr[i].LAB_L}, a: ${got_rect_arr[i].LAB_a}, b: ${got_rect_arr[i].LAB_b}, Y: ${got_rect_arr[i].YI}`);
         }
         //client.close();
+    });
+}
+
+//FIXME: Наладить отправку данных клиенту с базы
+function mongo_get() {
+    mongoClient.connect(function(err, client){
+        if(err){
+            return console.log(err);
+        }
+        const db = client.db("pvc_db");
+        const collection = db.collection("rectangle");
+        let arr;
+        collection.find({}).toArray(function(err, result) {
+            if (err) throw err;
+            arr = result;
+        });
+        // Делать дела
     });
 }

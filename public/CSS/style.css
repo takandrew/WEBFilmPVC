@@ -20,10 +20,6 @@
     font-size: 20px;
 }
 
-#div-canvas {
-    position: relative;
-}
-
 #canvas-pvc, #canvas-rect {
     position:absolute; top: 0; left: 30%;
 }

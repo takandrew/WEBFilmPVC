@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="public/CSS/style.css">
     <link rel="stylesheet" type="text/css" href="public/CSS/modal.css">
+    <link rel="stylesheet" type="text/css" href="public/CSS/table.css">
     <title>Главная страница</title>
 </head>
 <body>
     <div class="wrapper">
         <h1 class="project-theme">Дистанционная система оценки динамической термостабильности ПВХ-пленок</h1>
     </div>
-    <div class="content">
+    <div class="content" id="content">
 
         <a id="open_modal" class="open_modal" href="#open" style="visibility: hidden"></a>
         <div id="modal" class="modal bounceIn">
             <div id="close_modal"></div>
             <div class="modal_txt">
-                <label for="modal-temp">Температура: </label>
+                <label for="modal-temp">Температура (°С): </label>
                 <input id="modal-temp" type="text">
                 <label for="modal-time">Время (с):</label>
                 <input id="modal-time" type="text">
@@ -46,5 +47,6 @@
 </body>
 <script type="text/javascript" src="public/JS/scripts.js"></script>
 <script type="text/javascript" src="public/JS/modal.js"></script>
+<script type="text/javascript" src="public/JS/table.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </html>
