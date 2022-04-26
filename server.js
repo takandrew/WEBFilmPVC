@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const {response} = require("express");
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/')));
@@ -57,6 +58,8 @@ function mongo_push() {
     });
 }
 
+var db_data = [];
+
 //FIXME: Наладить отправку данных клиенту с базы
 function mongo_get() {
     mongoClient.connect(function(err, client){
@@ -68,8 +71,8 @@ function mongo_get() {
         let arr;
         collection.find({}).toArray(function(err, result) {
             if (err) throw err;
-            arr = result;
+            db_data = result;
+            console.log(db_data);
         });
-        // Делать дела
     });
 }

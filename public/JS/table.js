@@ -1,4 +1,10 @@
 function create_table() {
+    let table_exist = document.getElementById('div-table');
+
+    if (table_exist !== null) {
+        table_exist.parentNode.removeChild(table_exist);
+    }
+
     let table = document.createElement('table');
     let thead = document.createElement('thead');
     let tbody = document.createElement('tbody');
@@ -10,6 +16,7 @@ function create_table() {
 
     let div_table = document.createElement('div');
     div_table.className = "div-table";
+    div_table.id = "div-table";
     document.getElementById('content').appendChild(div_table);
 
     div_table.appendChild(table);

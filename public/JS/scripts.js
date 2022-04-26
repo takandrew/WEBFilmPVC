@@ -50,12 +50,15 @@ var canvas_rect = document.getElementById('canvas-rect'),
 var x_left, x_right, y_left, y_right, rect_w, rect_h;
 var draw = false;
 
+var stop_button = document.getElementById('stop-choosing-sector-button');
+
 function start_drawing() {
     canvas_rect.style.visibility = "visible";
     context_rect.clearRect(0,0, canvas_rect.width, canvas_rect.height);
     canvas_rect.addEventListener("mousedown", mouse_downed, true);
     canvas_rect.addEventListener("mousemove", mouse_moved, true);
     canvas_rect.addEventListener("mouseup", mouse_upped, true);
+    stop_button.disabled = false;
 }
 
 function  stop_drawing() {
@@ -65,7 +68,8 @@ function  stop_drawing() {
     canvas_rect.style.visibility = "hidden";
     send_data();
     create_table();
-    get_data();
+    stop_button.disabled = true;
+   // get_data();
 }
 
 var is_final_rec = false;
