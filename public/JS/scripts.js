@@ -66,10 +66,11 @@ function  stop_drawing() {
     canvas_rect.removeEventListener("mousedown", mouse_downed, true);
     canvas_rect.removeEventListener("mousemove", mouse_moved, true);
     canvas_rect.style.visibility = "hidden";
+    //FIXME: СДЕЛАТЬ КАКИМ-ТО ОБРАЗОМ ПОСЛЕДОВАТЕЛЬНЫЙ ВЫЗОВ ФУНКЦИЙ БЕЗ ТАЙМАУТНОГО КРИНЖА
     send_data();
-    create_table();
+    setTimeout(get_data(), 1000);
+    setTimeout(create_table(),2000);
     stop_button.disabled = true;
-   // get_data();
 }
 
 var is_final_rec = false;
@@ -97,13 +98,13 @@ function mouse_upped(e) {
 var temp, time, LAB_L, LAB_a, LAB_b, YI;
 
 class rect_class {
-    constructor(time, temp, xl, yl, w, h, LAB_L, LAB_a, LAB_b, YI) {
+    constructor(time, temp, LAB_L, LAB_a, LAB_b, YI) {
         this.time = time;
         this.temp = temp;
-        this.xl = xl;
-        this.yl = yl;
-        this.w = w;
-        this.h = h;
+        //this.xl = xl;
+        //this.yl = yl;
+        //this.w = w;
+        //this.h = h;
         this.LAB_L = LAB_L;
         this.LAB_a = LAB_a;
         this.LAB_b = LAB_b;
@@ -146,8 +147,8 @@ function draw_rectangle(e) {
 
 function rect_class_push() {
     get_rect_rgb();
-    let rect_class_temp = new rect_class(time, temp, x_left,y_left,
-        rect_w,rect_h, LAB_L, LAB_a, LAB_b, YI);
+    //let rect_class_temp = new rect_class(time, temp, x_left,y_left,rect_w,rect_h, LAB_L, LAB_a, LAB_b, YI);
+    let rect_class_temp = new rect_class(time, temp, LAB_L, LAB_a, LAB_b, YI);
     rect_arr.push(rect_class_temp);
 }
 
@@ -214,16 +215,24 @@ let get_f = function(x) {
 
 
 function send_data() {
+    console.log("Зашли в send_data");
     axios.post('/sendData', {rect_arr: rect_arr}).then(function(response) {
-        console.log(response.data);
+
     }).catch(function (error) {
         console.log(error);
     });
 }
 
 function get_data() {
-    axios.post('/getData', {rect_arr: rect_arr}).then(function(response) {
-        console.log(response.data);
+    console.log("Зашли в get_data");
+    axios.post('/getData').then(function(response) {
+        //FIXME: НЕ ПЕРЕДАЕТ ДОЛЖНЫМ ОБРАЗОМ (undefined)
+        rect_arr = [];
+        for (let i = 0; i < response.data.length; i++) {
+            let rect_class_temp = new rect_class(response.data.time,
+                response.data.temp, response.data.L, response.data.a, response.data.b, response.data.Y);
+            rect_arr.push(rect_class_temp);
+        }
     }).catch(function (error) {
         console.log(error);
     });
