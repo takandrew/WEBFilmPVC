@@ -50,6 +50,7 @@ var canvas_rect = document.getElementById('canvas-rect'),
 var x_left, x_right, y_left, y_right, rect_w, rect_h;
 var draw = false;
 
+var start_button = document.getElementById('choose-sector-button');
 var stop_button = document.getElementById('stop-choosing-sector-button');
 
 function start_drawing() {
@@ -58,6 +59,8 @@ function start_drawing() {
     canvas_rect.addEventListener("mousedown", mouse_downed, true);
     canvas_rect.addEventListener("mousemove", mouse_moved, true);
     canvas_rect.addEventListener("mouseup", mouse_upped, true);
+    rect_arr = [];
+    start_button.disabled = true;
     stop_button.disabled = false;
 }
 
@@ -66,11 +69,25 @@ function  stop_drawing() {
     canvas_rect.removeEventListener("mousedown", mouse_downed, true);
     canvas_rect.removeEventListener("mousemove", mouse_moved, true);
     canvas_rect.style.visibility = "hidden";
-    //FIXME: СДЕЛАТЬ КАКИМ-ТО ОБРАЗОМ ПОСЛЕДОВАТЕЛЬНЫЙ ВЫЗОВ ФУНКЦИЙ БЕЗ ТАЙМАУТНОГО КРИНЖА
-    send_data();
-    setTimeout(get_data(), 1000);
-    setTimeout(create_table(),2000);
+    send_data((error) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            create_table(false);
+            create_chart();
+            get_data((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    create_table(true);
+                }
+            });
+        }
+    });
     stop_button.disabled = true;
+    start_button.disabled = false;
 }
 
 var is_final_rec = false;
@@ -214,26 +231,24 @@ let get_f = function(x) {
 }
 
 
-function send_data() {
-    console.log("Зашли в send_data");
+function send_data(cb) {
     axios.post('/sendData', {rect_arr: rect_arr}).then(function(response) {
-
+        return cb(null)
     }).catch(function (error) {
-        console.log(error);
+        return cb(error);
     });
 }
 
-function get_data() {
-    console.log("Зашли в get_data");
+function get_data(cb) {
     axios.post('/getData').then(function(response) {
-        //FIXME: НЕ ПЕРЕДАЕТ ДОЛЖНЫМ ОБРАЗОМ (undefined)
         rect_arr = [];
         for (let i = 0; i < response.data.length; i++) {
-            let rect_class_temp = new rect_class(response.data.time,
-                response.data.temp, response.data.L, response.data.a, response.data.b, response.data.Y);
+            let rect_class_temp = new rect_class(response.data[i].time,
+                response.data[i].temp, response.data[i].L, response.data[i].a, response.data[i].b, response.data[i].Y);
             rect_arr.push(rect_class_temp);
         }
+        return cb(null);
     }).catch(function (error) {
-        console.log(error);
+        return cb(error);
     });
 }

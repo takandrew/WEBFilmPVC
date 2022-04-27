@@ -1,8 +1,15 @@
-function create_table() {
-    let table_exist = document.getElementById('div-table');
-
-    if (table_exist !== null) {
-        table_exist.parentNode.removeChild(table_exist);
+function create_table(is_from_base) {
+    if (is_from_base === true) {
+        let table_base_exist = document.getElementById('div-table-base');
+        if (table_base_exist !== null) {
+            table_base_exist.parentNode.removeChild(table_base_exist);
+        }
+    }
+    else {
+        let table_cur_exist = document.getElementById('div-table-cur');
+        if (table_cur_exist !== null) {
+            table_cur_exist.parentNode.removeChild(table_cur_exist);
+        }
     }
 
     let table = document.createElement('table');
@@ -16,8 +23,24 @@ function create_table() {
 
     let div_table = document.createElement('div');
     div_table.className = "div-table";
-    div_table.id = "div-table";
+    if (is_from_base === true) {
+        div_table.id = "div-table-base";
+    }
+    else {
+        div_table.id = "div-table-cur";
+    }
     document.getElementById('content').appendChild(div_table);
+
+    let table_label = document.createElement('h2');
+    table_label.id = "table-label";
+    if (is_from_base === true) {
+        table_label.innerText = "Общая таблица записей в базе данных";
+    }
+    else {
+        table_label.innerText = "Таблица текущих записей";
+    }
+
+    div_table.appendChild(table_label);
 
     div_table.appendChild(table);
 
