@@ -1,2 +1,2 @@
 # Readme
-It's a web app that will analyze polymer photos  
+It's a remote system that allows the technologist to evaluate the dynamic thermal stability of PVC films from photographs of the dynamic test results, which will save the technologist's time for research
